@@ -1,8 +1,8 @@
-import { useQuery, gql } from '@apollo/client';
+import {  gql } from '@apollo/client';
 
-const GET_REPOS = gql`
-  query GetRepos($cursor: String) {
-    search(query: "topic:react", type: REPOSITORY, first: 10, after: $cursor) {
+export const GET_REPOS = gql`
+  query GetRepos($cursor: String, $topic: String!, $pageSize: Int) {
+    search(query: $topic, type: REPOSITORY, first: $pageSize, after: $cursor) {
       pageInfo {
         hasNextPage
         endCursor
@@ -28,30 +28,7 @@ const GET_REPOS = gql`
           }
         }
       }
+      repositoryCount
     }
   }
 `;
-
-interface RepoData {
-  name: string;
-  owner: { login: string };
-  description: string;
-  stargazers: { totalCount: number };
-  watchers: { totalCount: number };
-  forks: { totalCount: number };
-  url: string;
-}
-
-interface SearchResponse {
-  search: {
-    pageInfo: {
-      hasNextPage: boolean;
-      endCursor: string | null;
-    };
-    edges: { node: RepoData }[];
-  };
-}
-
-export function useGetRepos() {
-  return useQuery<SearchResponse>(GET_REPOS);
-}

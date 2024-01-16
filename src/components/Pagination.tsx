@@ -17,11 +17,6 @@ export const PaginationComponent = ({
   handlePageClick,
   startPage,
 }: PaginationProps) => {
-  //disabled={currentPage === 1}
-
-  console.log(currentPage, "currentPage");
-  console.log(pages, 'pages')
-
   return (
     <Pagination className="my-5">
       <PaginationContent>

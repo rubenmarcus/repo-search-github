@@ -1,38 +1,6 @@
+import { GET_REPOS } from '@/data/queries/main.query';
 import { SearchResponse } from '@/types/types';
-import { useLazyQuery, gql } from '@apollo/client';
-
-const GET_REPOS = gql`
-  query GetRepos($cursor: String, $topic: String!, $pageSize: Int) {
-    search(query: $topic, type: REPOSITORY, first: $pageSize, after: $cursor) {
-      pageInfo {
-        hasNextPage
-        endCursor
-      }
-      edges {
-        node {
-          ... on Repository {
-            name
-            owner {
-              login
-            }
-            description
-            stargazers {
-              totalCount
-            }
-            watchers {
-              totalCount
-            }
-            forks {
-              totalCount
-            }
-            url
-          }
-        }
-      }
-      repositoryCount
-    }
-  }
-`;
+import { useLazyQuery } from '@apollo/client';
 
 
 const useGetRepos = () => {

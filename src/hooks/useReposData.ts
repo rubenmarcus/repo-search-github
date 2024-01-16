@@ -19,6 +19,9 @@ export const useReposData = () => {
 
   const { getRepos, loading, error, data } = useGetRepos();
 
+
+  console.log(JSON.stringify(data, undefined, 3), 'data')
+
   const handleInputChange = (val: string) => {
     setSearchInput(val);
   };
@@ -116,7 +119,8 @@ export const useReposData = () => {
     handleInputChange,
     searchInput,
     topic,
-    totalRepos: data?.search.repositoryCount,
+    totalRepos: data?.search.repositoryCount
+    
   };
 
   return {
@@ -125,5 +129,6 @@ export const useReposData = () => {
     data,
     headProps,
     paginationProps,
+    noRepos: data?.search.repositoryCount === 0
   };
 };

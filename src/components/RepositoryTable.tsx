@@ -77,7 +77,6 @@ const TableContainer = ({ data }: { data: SearchResponse }): JSX.Element => {
           >
             <TableCell className="font-medium">
               <a href={node.url} target="_blank">
-                {" "}
                 {node.name}
               </a>
             </TableCell>
