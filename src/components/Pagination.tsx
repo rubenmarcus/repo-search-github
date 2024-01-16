@@ -20,29 +20,26 @@ export const PaginationComponent = ({
   return (
     <Pagination className="my-5">
       <PaginationContent>
-        <PaginationItem>
-          <PaginationPrevious href="#" onClick={handlePrevClick} />
-        </PaginationItem>
+        <PaginationPrevious href="#" onClick={handlePrevClick} />
 
         {pages.map((page) => (
-          <PaginationItem onClick={() => handlePageClick(page)}>
-            <PaginationLink
-              className={
-                currentPage == startPage + page - 1 ? "bg-white text-black" : ""
-              }
-              href="#"
-            >
-              {startPage + page - 1}
-            </PaginationLink>{" "}
-          </PaginationItem>
+          <PaginationLink
+            key={startPage + page - 1}
+            onClick={() => handlePageClick(page)}
+            className={
+              currentPage == startPage + page - 1 ? "bg-white text-black" : ""
+            }
+            href="#"
+          >
+            {startPage + page - 1}
+          </PaginationLink>
         ))}
 
         <PaginationItem>
           <PaginationEllipsis />
         </PaginationItem>
-        <PaginationItem>
-          <PaginationNext onClick={handleNextClick} href="#" />
-        </PaginationItem>
+
+        <PaginationNext onClick={handleNextClick} href="#" />
       </PaginationContent>
     </Pagination>
   );

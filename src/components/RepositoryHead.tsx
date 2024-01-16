@@ -19,10 +19,10 @@ export const RepositoryHead = ({
       <h2> Search Github repositories by topic </h2>
       <div className="flex w-full my-5 gap-10 items-center">
         <h3> {topic}</h3>
-        <p className="flex gap-2 items-center">
-          Total Repositories:{" "}
+        <div className="flex gap-2 items-center">
+          <p>Total Repositories:{" "}</p>
           {totalRepos ?? <Skeleton className="w-[80px] h-[12px] " />}
-        </p>
+        </div>
         <form
           onSubmit={handleSubmit}
           className="ml-auto flex"
