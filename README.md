@@ -53,3 +53,10 @@ VITE_GITHUB_ACCESS_TOKEN=yourpersonaltoken
 Run locally:
 
 `pnpm run dev`
+
+
+## running tests
+
+Run locally:
+
+`pnpm run test`
