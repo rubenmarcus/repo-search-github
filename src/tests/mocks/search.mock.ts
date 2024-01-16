@@ -39,3 +39,35 @@ export const SEARCH_MOCK = {
     repositoryCount: 52782,
   },
 };
+
+export const RESPONSE_FROM_API = {
+  search: {
+    edges: [
+      {
+        node: {
+          description:
+            "This is the repo for Vue 2. For Vue 3, go to https://github.com/vuejs/core",
+          forks: {
+            totalCount: 33246,
+          },
+          name: "vue",
+          owner: {
+            login: "vuejs",
+          },
+          stargazers: {
+            totalCount: 206145,
+          },
+          url: "https://github.com/vuejs/vue",
+          watchers: {
+            totalCount: 5928,
+          },
+        },
+      },
+    ],
+    pageInfo: {
+      endCursor: "Y3Vyc29yOjEw",
+      hasNextPage: true,
+    },
+    repositoryCount: 52782,
+  },
+};

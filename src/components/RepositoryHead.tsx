@@ -13,8 +13,7 @@ export const RepositoryHead = ({
   return (
     <>
       <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-3xl w-full pt-10">
-        {" "}
-        Github Repository Search{" "}
+        Github Repository Search
       </h1>
       <h2> Search Github repositories by topic </h2>
       <div className="flex w-full my-5 gap-10 items-center">
