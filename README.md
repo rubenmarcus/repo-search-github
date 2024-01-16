@@ -1,30 +1,55 @@
-# React + TypeScript + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Github Repository Search
 
-Currently, two official plugins are available:
+ 
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- This Project was made with the current stack:
 
-## Expanding the ESLint configuration
+- FE Framework: React 18 + Vite + TypeScript + SWR
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- UI Lib: shadcn, tailwind
 
-- Configure the top-level `parserOptions` property like this:
+- Testing Framework: Jest + React Testing Library
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+- Data Fetching: Apollo Client
+
+  
+  
+
+## Live Demo
+
+https://repo-search-github.vercel.app/
+
+  
+
+## Installation
+
+  
+
+1. we recommend using pnpm
+
+`pnpm install`
+
+  
+
+2. you will need to create a new personal token on Github:
+
+https://github.com/settings/tokens
+
+  
+
+3. create a .env file on the root of the project with the following var:
+
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+VITE_GITHUB_ACCESS_TOKEN=yourpersonaltoken
+
+```
+
+  
+
+## running
+
+Run locally:
+
+`pnpm run dev`
