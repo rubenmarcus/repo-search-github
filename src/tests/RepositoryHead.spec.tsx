@@ -1,90 +1,36 @@
 import { render, fireEvent } from "@testing-library/react";
-import { MemoryRouter, Route } from "react-router-dom";
+import "@testing-library/jest-dom";
 import { RepositoryHead } from "@/components/RepositoryHead";
-import { useRepositoryData } from "@/hooks/useReposData";
-
-const mock = {
-  searchInput: "mockSearchInput",
-  topic: "topic:mock",
-  totalRepos: 42,
-  handleSubmit: jest.fn(),
-  handleInputChange: jest.fn(),
-};
-
-jest.mock("@/hooks/useReposData", () => ({
-  useRepositoryData: jest.fn(() => ({
-    loading: false,
-    error: undefined,
-    data: { search: { repositoryCount: 42 } }, // Mocking some data for the test
-    headProps: {
-      handleSubmit: jest.fn(),
-      handleInputChange: jest.fn(),
-      searchInput: "mockSearchInput",
-      topic: "topic:mock",
-      totalRepos: 42,
-    },
-    paginationProps: {
-      pages: [1, 2, 3], // Mocking some pages for the test
-      currentPage: 1,
-      totalPages: 3,
-      handlePrevClick: jest.fn(),
-      handleNextClick: jest.fn(),
-      handlePageClick: jest.fn(),
-      startPage: 1,
-    },
-    noRepos: false,
-  })),
-}));
 
 describe("RepositoryHead", () => {
-  it("renders correctly", () => {
-    const { getByText } = render(
-      <MemoryRouter initialEntries={["/mockTopic"]}>
-        <Route path="/:topic">
-          <RepositoryHead headProps={mock} />
-        </Route>
-      </MemoryRouter>
+  test("renders RepositoryHead component with provided props", () => {
+    const headProps = {
+      searchInput: "",
+      topic: "topic:react",
+      totalRepos: 334098,
+      handleInputChange: jest.fn(),
+      handleSubmit: jest.fn(),
+    };
+
+    const { getByText, getByPlaceholderText, getByTestId } = render(
+      <RepositoryHead headProps={headProps} />
     );
 
-    expect(getByText("Github Repository Search")).toBeInTheDocument();
-    expect(
-      getByText("Search Github repositories by topic")
-    ).toBeInTheDocument();
-    expect(getByText("topic:mock")).toBeInTheDocument();
-    expect(getByText("Total Repositories: 42")).toBeInTheDocument();
-    expect(getByText("Search")).toBeInTheDocument();
-  });
+    expect(getByText("topic:react")).toBeInTheDocument();
 
-  it("calls handleInputChange when input changes", () => {
-    const { getByPlaceholderText } = render(
-      <MemoryRouter initialEntries={["/mockTopic"]}>
-        <Route path="/:topic">
-          <RepositoryHead headProps={mock} />
-        </Route>
-      </MemoryRouter>
-    );
+    const inputElement = getByPlaceholderText("Search by topic...");
+    expect(inputElement).toBeInTheDocument();
 
-    const input = getByPlaceholderText("Search by topic...");
-    fireEvent.change(input, { target: { value: "newSearchInput" } });
+    expect(getByText("Total Repositories: 334098")).toBeInTheDocument();
 
-    // Ensure that handleInputChange is called with the correct value
-    expect(
-      useRepositoryData().headProps.handleInputChange
-    ).toHaveBeenCalledWith("newSearchInput");
-  });
+    const searchButton = getByText("Search");
+    expect(searchButton).toBeInTheDocument();
 
-  it("calls handleSubmit when form is submitted", () => {
-    const { getByText } = render(
-      <MemoryRouter initialEntries={["/mockTopic"]}>
-        <Route path="/:topic">
-          <RepositoryHead headProps={mock} />
-        </Route>
-      </MemoryRouter>
-    );
+    fireEvent.change(inputElement, { target: { value: "new topic" } });
+    expect(headProps.handleInputChange).toHaveBeenCalledWith("new topic");
 
-    fireEvent.click(getByText("Search"));
-
-    // Ensure that handleSubmit is called
-    expect(useRepositoryData().headProps.handleSubmit).toHaveBeenCalled();
+    fireEvent.submit(getByTestId("search-form"));
+    // Test if handleSubmit is called
+    expect(headProps.handleSubmit).toHaveBeenCalled();
   });
 });

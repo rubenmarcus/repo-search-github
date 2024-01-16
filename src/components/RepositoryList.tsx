@@ -3,12 +3,9 @@ import { PaginationComponent } from "./Pagination";
 import { RepositoryHead } from "./RepositoryHead";
 import { RepositoryTable } from "./RepositoryTable";
 
-const RepositoryList = () => {
+export const RepositoryList = () => {
   const { loading, error, data, headProps, paginationProps, noRepos } =
     useRepositoryData();
-
-
-    console.log(JSON.stringify(headProps, undefined, 3))
 
   if (error) return <p>Error: {error.message}</p>;
 
@@ -29,5 +26,3 @@ const RepositoryList = () => {
     </div>
   );
 };
-
-export default RepositoryList;

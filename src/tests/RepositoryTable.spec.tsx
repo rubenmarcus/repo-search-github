@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import { RepositoryTable } from "@/components/RepositoryTable";
-import { SEARCH_MOCK } from "./mocks/search.mock";
+import { SEARCH_MOCK } from "./__mocks__/search.mock";
 
 test("RepositoryTable renders correctly with provided data", () => {
   render(<RepositoryTable data={SEARCH_MOCK} loading={false} />);

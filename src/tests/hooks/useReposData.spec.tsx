@@ -1,5 +1,5 @@
 import { renderHook } from "@testing-library/react-hooks";
-import { SEARCH_MOCK } from "../mocks/search.mock";
+import { SEARCH_MOCK } from "../__mocks__/search.mock";
 import { useRepositoryData } from "@/hooks/useReposData";
 
 jest.mock("@/hooks/useReposData", () => ({

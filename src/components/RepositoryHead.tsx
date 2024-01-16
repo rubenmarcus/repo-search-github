@@ -10,6 +10,9 @@ export const RepositoryHead = ({
 }): JSX.Element => {
   const { handleSubmit, searchInput, handleInputChange, totalRepos, topic } =
     headProps;
+
+  console.log(JSON.stringify(headProps, undefined, 3))
+
   return (
     <>
       <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-3xl w-full pt-10">
@@ -22,7 +25,7 @@ export const RepositoryHead = ({
           Total Repositories:{" "}
           {totalRepos ?? <Skeleton className="w-[80px] h-[12px] " />}
         </p>
-        <form onSubmit={handleSubmit} className="ml-auto flex">
+        <form onSubmit={handleSubmit} className="ml-auto flex" data-testid="search-form">
           <Input
             type="text"
             placeholder="Search by topic..."

@@ -1,6 +1,6 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { ApolloProvider, client } from "./data/providers/ApolloClient";
-import RepositoryList from "./components/RepositoryList";
+import { RepositoryList } from "./components/RepositoryList";
 
 function App() {
   return (

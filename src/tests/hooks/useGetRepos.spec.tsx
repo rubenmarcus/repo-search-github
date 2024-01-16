@@ -3,7 +3,7 @@ import { MockedProvider } from "@apollo/client/testing";
 import { act } from "react-dom/test-utils";
 import { GET_REPOS } from "@/data/queries/main.query";
 import useGetRepos from "@/hooks/useGetRepos";
-import { RESPONSE_FROM_API, SEARCH_MOCK } from "../mocks/search.mock";
+import { RESPONSE_FROM_API, SEARCH_MOCK } from "../__mocks__/search.mock";
 
 const mocks = [
   {
