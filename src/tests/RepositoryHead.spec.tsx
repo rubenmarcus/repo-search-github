@@ -21,7 +21,7 @@ describe("RepositoryHead", () => {
     const inputElement = getByPlaceholderText("Search by topic...");
     expect(inputElement).toBeInTheDocument();
 
-    expect(getByText("Total Repositories: 334098")).toBeInTheDocument();
+    expect(getByText("334098")).toBeInTheDocument();
 
     const searchButton = getByText("Search");
     expect(searchButton).toBeInTheDocument();

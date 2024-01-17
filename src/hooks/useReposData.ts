@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import useGetRepos from "./useGetRepos";
-import { useDebounce } from "@uidotdev/usehooks";
 
 export const useRepositoryData = () => {
   const [pageSize] = useState(10);
@@ -9,13 +8,11 @@ export const useRepositoryData = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [topic, setTopic] = useState("topic:react");
 
-  const debouncedTopic = useDebounce(searchInput, 1300);
 
   const { topic: routeTopic } = useParams();
 
   const navigate = useNavigate();
 
-  const topicValue = topic.split("topic:")[1];
 
   const { getRepos, loading, error, data } = useGetRepos();
 
@@ -23,11 +20,6 @@ export const useRepositoryData = () => {
     setSearchInput(val);
   };
 
-  useEffect(() => {
-    if (debouncedTopic) {
-      navigate(`/${debouncedTopic}`);
-    }
-  }, [debouncedTopic, navigate, searchInput, topicValue]);
 
   useEffect(() => {
     const newTopic = routeTopic ? `topic:${routeTopic}` : "topic:react";

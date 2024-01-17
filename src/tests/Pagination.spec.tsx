@@ -9,7 +9,7 @@ describe("PaginationComponent", () => {
   const mockHandlePageClick = jest.fn();
   const mockStartPage = 1;
 
-  it("renders the PaginationComponent correctly", () => {
+  test("renders the PaginationComponent correctly", () => {
     const { container } = render(
       <PaginationComponent
         pages={mockPages}
@@ -24,7 +24,7 @@ describe("PaginationComponent", () => {
     expect(container).toMatchSnapshot();
   });
 
-  it("calls handlePrevClick on clicking Previous button", () => {
+  test("calls handlePrevClick on clicking Previous button", () => {
     const { getByText } = render(
       <PaginationComponent
         pages={mockPages}
@@ -41,7 +41,7 @@ describe("PaginationComponent", () => {
     expect(mockHandlePrevClick).toHaveBeenCalled();
   });
 
-  it("calls handleNextClick on clicking Next button", () => {
+  test("calls handleNextClick on clicking Next button", () => {
     const { getByText } = render(
       <PaginationComponent
         pages={mockPages}
@@ -58,7 +58,7 @@ describe("PaginationComponent", () => {
     expect(mockHandleNextClick).toHaveBeenCalled();
   });
 
-  it("calls handlePageClick with the correct page number", () => {
+  test("calls handlePageClick with the correct page number", () => {
     const { getByText } = render(
       <PaginationComponent
         pages={mockPages}

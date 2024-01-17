@@ -18,7 +18,7 @@ const mocks = [
 ];
 
 describe("useGetRepos", () => {
-  it("fetches data correctly", async () => {
+  test("fetches data correctly", async () => {
     const { result, waitForNextUpdate } = renderHook(() => useGetRepos(), {
       wrapper: ({ children }: { children: JSX.Element }) => (
         <MockedProvider mocks={mocks} addTypename={false}>
@@ -53,7 +53,7 @@ describe("useGetRepos", () => {
     expect(result.current.data).toMatchObject(RESPONSE_FROM_API);
   });
 
-  it("handles error correctly", async () => {
+  test("handles error correctly", async () => {
     const errorMock = [
       {
         request: {

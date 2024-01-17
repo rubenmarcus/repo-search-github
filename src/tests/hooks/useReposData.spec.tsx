@@ -29,7 +29,7 @@ jest.mock("@/hooks/useReposData", () => ({
 }));
 
 describe("useReposData", () => {
-  it("initializes correctly", () => {
+  test("initializes correctly", () => {
     const { result } = renderHook(() => useRepositoryData());
     expect(result.current.loading).toBe(false);
     expect(result.current.error).toBeUndefined();
