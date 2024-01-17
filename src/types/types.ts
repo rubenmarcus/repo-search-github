@@ -19,6 +19,12 @@ interface SearchResponse {
   };
 }
 
+interface RepositoryCountResponse {
+    search: {
+    repositoryCount: number;
+  };
+}
+
 interface HeadProps {
   handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
   searchInput: string;
@@ -36,4 +42,4 @@ interface PaginationProps {
   handlePageClick: (page: number) => void;
 }
 
-export type { SearchResponse, RepositoryData, HeadProps, PaginationProps };
+export type { SearchResponse, RepositoryData, HeadProps, PaginationProps, RepositoryCountResponse };

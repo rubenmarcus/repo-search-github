@@ -28,6 +28,13 @@ export const GET_REPOS = gql`
           }
         }
       }
+    }
+  }
+`;
+
+export const GET_REPOS_COUNT = gql`
+  query GetRepositoryCount( $topic: String!,) {
+    search(query: $topic, type: REPOSITORY) {
       repositoryCount
     }
   }

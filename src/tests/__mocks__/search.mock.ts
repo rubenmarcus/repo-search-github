@@ -1,5 +1,12 @@
 // this mock is intended for component unit test only, not for integration tests
 
+export const COUNT_MOCK = {
+  search: {
+    __typename: "SearchResultItemConnection",
+    repositoryCount: 52782,
+  },
+};
+
 export const SEARCH_MOCK = {
   search: {
     __typename: "SearchResultItemConnection",
@@ -68,6 +75,11 @@ export const RESPONSE_FROM_API = {
       endCursor: "Y3Vyc29yOjEw",
       hasNextPage: true,
     },
+  },
+};
+
+export const RESPONSE_FROM_COUNT = {
+  search: {
     repositoryCount: 52782,
   },
 };

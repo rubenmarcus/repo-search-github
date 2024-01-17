@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import useGetRepos from "./useGetRepos";
+import { useGetReposCount } from "./useGetReposCount";
 
 export const useRepositoryData = () => {
   const [pageSize] = useState(10);
@@ -8,22 +9,28 @@ export const useRepositoryData = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [topic, setTopic] = useState("topic:react");
 
-
   const { topic: routeTopic } = useParams();
 
   const navigate = useNavigate();
 
-
   const { getRepos, loading, error, data } = useGetRepos();
+
+  const { getReposCount, reposCount } = useGetReposCount();
 
   const handleInputChange = (val: string) => {
     setSearchInput(val);
   };
 
-
   useEffect(() => {
     const newTopic = routeTopic ? `topic:${routeTopic}` : "topic:react";
     setTopic(newTopic);
+
+    getReposCount({
+      variables: {
+        topic: newTopic,
+      },
+    });
+
     getRepos({
       variables: {
         cursor: null,
@@ -33,8 +40,8 @@ export const useRepositoryData = () => {
     });
   }, [routeTopic, pageSize]);
 
-  const totalPages = data?.search?.repositoryCount
-    ? Math.ceil(data?.search?.repositoryCount / pageSize)
+  const totalPages = reposCount
+    ? Math.ceil(reposCount / pageSize)
     : 0;
   const maxVisiblePages = 8;
   const pages = Array.from(
@@ -108,7 +115,7 @@ export const useRepositoryData = () => {
     handleInputChange,
     searchInput,
     topic,
-    totalRepos: data?.search.repositoryCount,
+    totalRepos: reposCount,
   };
 
   return {
@@ -117,6 +124,6 @@ export const useRepositoryData = () => {
     data,
     headProps,
     paginationProps,
-    noRepos: data?.search.repositoryCount === 0,
+    noRepos: reposCount === 0,
   };
 };
