@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import useGetRepos from "./useGetRepos";
 import { useGetReposCount } from "./useGetReposCount";
@@ -41,12 +41,17 @@ export const useRepositoryData = () => {
     });
   }, [routeTopic, pageSize]);
 
-  const totalPages = reposCount ? Math.ceil(reposCount / pageSize) : 0;
+  const totalPages = useMemo(() => {
+    return reposCount ? Math.ceil(reposCount / pageSize) : 0;
+  }, [reposCount, pageSize]);
+
   const maxVisiblePages = 8;
-  const pages = Array.from(
-    { length: Math.min(totalPages, maxVisiblePages) },
-    (_, i) => i + 1
-  );
+  const pages = useMemo(() => {
+    return Array.from(
+      { length: Math.min(totalPages, maxVisiblePages) },
+      (_, i) => i + 1
+    );
+  }, [totalPages, maxVisiblePages]);
   const startPage = Math.max(1, currentPage - Math.floor(maxVisiblePages / 2));
 
   const handlePageClick = (page: number) => {
