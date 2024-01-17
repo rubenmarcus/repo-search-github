@@ -24,6 +24,7 @@ export const useRepositoryData = () => {
   useEffect(() => {
     const newTopic = routeTopic ? `topic:${routeTopic}` : "topic:react";
     setTopic(newTopic);
+    setCurrentPage(1);
 
     getReposCount({
       variables: {
@@ -40,9 +41,7 @@ export const useRepositoryData = () => {
     });
   }, [routeTopic, pageSize]);
 
-  const totalPages = reposCount
-    ? Math.ceil(reposCount / pageSize)
-    : 0;
+  const totalPages = reposCount ? Math.ceil(reposCount / pageSize) : 0;
   const maxVisiblePages = 8;
   const pages = Array.from(
     { length: Math.min(totalPages, maxVisiblePages) },
